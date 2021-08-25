@@ -1,6 +1,7 @@
 {
   "name": "test",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^3.0.2"
+    "chalk": "^4.1.2",
+    "ora": "^6.0.0",
+    "puppeteer": "^10.2.0"
   }
 }
