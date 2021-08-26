@@ -1,17 +1,14 @@
 import puppeteer from 'puppeteer';
 import ora from 'ora';
 import chalk from 'chalk';
+import inquirer from 'inquirer';
 const spinner = ora(chalk.green('Fetching products...'));
 
 const resultFoundEmojis = ['🌟', '🙂', '😄', '🤩', '😍', '🎉', '🍻', '✨'];
 const noResultEmojis = ['😬', '😭', '🤷', '😞', '😒', '👎', '😾', '😵'];
 
-const recordSelector =
-  '#main > div.group > div.col.span_9_of_12.sok-filter-res > div > div > div.PT_Faktaruta > div.PT_Beskr > a';
-const linkSelector =
-  '#main > div.group > div.col.span_9_of_12.sok-filter-res > div > div > div.PT_Bildruta > a';
-const vinylSelector =
-  '#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.span_6_of_12';
+const categorySelector =
+  '#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div';
 
 (async () => {
   try {
@@ -28,13 +25,35 @@ const vinylSelector =
 
     // TODO: Make it possible to only show vinyl records as results, perhaps a prompt asking if you're looking for a specific product type?
 
-    const titles = await page.$$eval(recordSelector, (recs) => recs.map((rec) => rec.innerText));
-    const links = await page.$$eval(linkSelector, (recs) => recs.map((rec) => rec.href));
+    const categories = await page.$$eval(categorySelector, (category) =>
+      category.map((cat) => {
+        const style = window.getComputedStyle(cat);
+        if (style.display === 'block') {
+          return cat.innerText;
+        }
+      })
+    );
+
+    // spinner.stop();
+    // await inquirer.prompt([
+    //   {
+    //     type: 'list',
+    //     name: 'category',
+    //     message: 'Do you want to only show a specific product type?',
+    //     choices: [
+    //       categories.map((category) => {
+    //         if (category !== null) {
+    //           category;
+    //         }
+    //       }),
+    //     ],
+    //   },
+    // ]);
 
     await browser.close();
     spinner.stop();
 
-    if (titles.length <= 0) {
+    if (categories.length <= 0) {
       console.log(
         chalk.red(
           `No products found ${noResultEmojis[Math.floor(Math.random() * noResultEmojis.length)]}`
@@ -48,8 +67,10 @@ const vinylSelector =
           } Found these products:`
         )
       );
-      titles.map((e, i) => {
-        console.log(chalk.magentaBright(e) + ' - ' + chalk.yellowBright(links[i]));
+      categories.map((category) => {
+        if (category !== null) {
+          console.log(chalk.magentaBright(category));
+        }
       });
     }
   } catch (e) {
