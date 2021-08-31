@@ -1,6 +1,6 @@
-import chalk from 'chalk'
+import chalk from 'chalk';
 
 export const exit = async (browser) => {
-	browser.close()
-	console.log(chalk.yellowBright('Bye 👋'))
-}
+	browser.close();
+	console.log(chalk.yellowBright('Bye 👋'));
+};
