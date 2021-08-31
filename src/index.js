@@ -41,7 +41,7 @@ const colorizedOutput = (x, y) => {
 
     categories = categories.filter((category) => category !== null);
 
-    spinner.stop();
+    spinner.succeed();
 
     if (categories.length > 0) {
       const specificCategory = await inquirer
@@ -95,9 +95,19 @@ const colorizedOutput = (x, y) => {
             selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
           case 'CD Singel':
             selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
+          case 'CD+Blu-Ray':
+            selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
+          case 'CD+DVD':
+            selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
           case 'Inbunden bok':
             selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
+          case 'Kartonnage':
+            selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
           case 'LP':
+            selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
+          case 'Maxisingel':
+            selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
+          case 'MC':
             selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
           case 'Merch':
             selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`;
@@ -121,7 +131,7 @@ const colorizedOutput = (x, y) => {
         const titles = await page.$$eval(recordSelector, (titles) =>
           titles.map((title) => {
             const style = window.getComputedStyle(title.parentElement.parentElement.parentElement);
-            if (style.display === 'block') {
+            if (style.display !== 'none') {
               return title.innerText;
             }
           })
@@ -129,14 +139,14 @@ const colorizedOutput = (x, y) => {
         const links = await page.$$eval(linkSelector, (links) =>
           links.map((link) => {
             const style = window.getComputedStyle(link.parentElement.parentElement.parentElement);
-            if (style.display === 'block') {
+            if (style.display !== 'none') {
               return link.href;
             }
           })
         );
 
         await browser.close();
-        spinner.stop();
+        spinner.succeed();
 
         if (titles.length <= 0) {
           console.log(
@@ -165,7 +175,6 @@ const colorizedOutput = (x, y) => {
         const links = await page.$$eval(linkSelector, (recs) => recs.map((rec) => rec.href));
 
         await browser.close();
-        spinner.stop();
 
         if (titles.length <= 0) {
           console.log(

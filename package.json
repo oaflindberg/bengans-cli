@@ -5,9 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bengans": "node index.js",
-    "hällas": "node hallas.js",
-    "category": "node category.js"
+    "bengans": "node src/index.js",
+    "hällas": "node src/hallas.js"
   },
   "author": "",
   "license": "ISC",
