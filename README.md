@@ -5,7 +5,9 @@ Ever wanted to search for products at [bengans.se](https://bengans.se) in the co
 
 ## Installation & Usage
 
+Make sure you're running **Node 14.0** or later version before using this, if you're not, it won't work.
 #### Installation
+
 ``` 
 git clone https://github.com/oaflindberg/bengans-cli.git
 cd bengans-cli 
@@ -15,9 +17,9 @@ cd bengans-cli
 ``` 
 npm run bengans YOUR-QUERY 
 ```
-> ***Example:*** npm run bengans hellacopters
+> ***Example:*** *npm run bengans hellacopters*
 > 
-> You have to spell the artist or product you're looking for correctly, if spaces are needed type it like this: Neil\ Young
+> You have to spell the artist or product you're looking for correctly, if spaces are needed add a backslash before the space  (***Example:*** Iron\ Maiden)
 
 
 ## Preview 
