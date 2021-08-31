@@ -15,7 +15,9 @@ const categorySelector =
 	'#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div'
 
 const colorizedOutput = (x, y) => {
-	console.log(`${chalk.magentaBright(x)} - ${chalk.yellowBright(y)}`)
+	if (x !== null && y !== null) {
+		console.log(`${chalk.magentaBright(x)} - ${chalk.yellowBright(y)}`)
+	}
 }
 
 ;(async () => {
@@ -63,12 +65,22 @@ const colorizedOutput = (x, y) => {
 								name: chalk.red('No'),
 								value: false,
 							},
+							{
+								key: 'exit',
+								name: 'Exit',
+								value: 'exit',
+							},
 						],
 					},
 				])
 				.then((r) => {
 					return r
 				})
+
+			if (specificCategory.category === 'exit') {
+				browser.close()
+				return
+			}
 
 			if (specificCategory.category) {
 				const category = await inquirer
@@ -77,35 +89,81 @@ const colorizedOutput = (x, y) => {
 							type: 'list',
 							name: 'category',
 							message: 'What type of product do you want to show?',
-							choices: categories,
+							choices: [
+								...categories,
+								{ key: 'exit', name: 'Exit', value: 'exit' },
+							],
 						},
 					])
 					.then((a) => {
 						return a
 					})
 
+				if (category.category === 'exit') {
+					browser.close()
+					return
+				}
+
 				spinner.start(`Fetching ${category.category}'s`)
 
 				let selector
 
 				switch (category.category) {
+					case 'T-shirts':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'Accessoarer':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Accessories':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Blu-Ray':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Blu-Ray 3D':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Blu-Ray+CD':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'CD':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'CD + Bok':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'CD Maxisingel':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'CD Singel':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'CD/DVD+Bok':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'CD+Blu-Ray':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'CD+DVD':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Dual Disc':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'DVD':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'DVD Audio':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'DVD Audiosingel':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'DVD Singel':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'DVD+CD':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Häftad bok':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Häftad bok':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Hoodies':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'Inbunden bok':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'Kartonnage':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Ljudbok MP3':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'LP':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'LP+CD':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'LP+DVD':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'Maxisingel':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
@@ -113,22 +171,47 @@ const colorizedOutput = (x, y) => {
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'Merch':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
-					case 'Merchandise':
-						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
-					case 'Musik Blu-Ray':
+					case 'Merch!!AIR8!!T-shirts':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'MusikDVD':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Musikvideo':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Other':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Övrigt':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Pocketbok':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'SACD':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'Singel':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Storpocket':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					case 'T-Shirt':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'T-shirts':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'T-shirts,Merch':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'T-shirts!!AIR8!!Merch':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Tillbehör':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Ultra HD Blu-Ray':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'USB Album':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'VHS':
+						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
+					case 'Vinyltillbehör':
 						selector = `#main > div.group > div.col.span_3_of_12.sok-filter > div.group > div.group > div.col.span_6_of_12.mediaformat.${category.category}`
 					default:
 						break
 				}
 
-				await page.focus(selector)
-				await page.keyboard.press('Enter')
+				await page.click(selector)
 
 				const titles = await page.$$eval(recordSelector, (titles) =>
 					titles.map((title) => {
@@ -143,7 +226,7 @@ const colorizedOutput = (x, y) => {
 				const links = await page.$$eval(linkSelector, (links) =>
 					links.map((link) => {
 						const style = window.getComputedStyle(
-							link.parentElement.parentElement.parentElement
+							link.parentElement.parentElement
 						)
 						if (style.display !== 'none') {
 							return link.href

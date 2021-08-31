@@ -1,19 +1,34 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "bengans": "node src/index.js",
-    "hällas": "node src/hallas.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "inquirer": "^8.1.2",
-    "ora": "^6.0.0",
-    "puppeteer": "^10.2.0"
-  }
+	"name": "bengans-cli",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "Find products available at bengans record store, get name and link to product based on your search query and category choices.",
+	"main": "index.js",
+	"scripts": {
+		"bengans": "node src/index.js"
+	},
+	"author": "Andreas Lindberg",
+	"license": "ISC",
+	"keywords": [
+		"cli",
+		"puppeteer",
+		"terminal",
+		"shopping",
+		"sweden",
+		"records"
+	],
+	"bin": {
+		"bengans": "./src/index.js",
+		"bengans-cli": "./src/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/oaflindberg/bengans-cli"
+	},
+	"dependencies": {
+		"chalk": "^4.1.2",
+		"inquirer": "^8.1.2",
+		"ora": "^6.0.0",
+		"puppeteer": "^10.2.0"
+	}
 }
