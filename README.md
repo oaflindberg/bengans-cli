@@ -1,7 +1,7 @@
 # bengans-cli
 
 ## Search for products available at Bengans record store like a pro
-Ever wanted to search for products at [bengans.se](https://bengans.se) in the fastest possible way? Now you can!
+Ever wanted to search for products at [bengans.se](https://bengans.se) in the coolest way possible? Now you can!
 
 ## Installation & Usage
 
