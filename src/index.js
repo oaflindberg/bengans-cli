@@ -79,6 +79,7 @@ const colorizedOutput = (x, y) => {
 
 			if (specificCategory.category === 'exit') {
 				browser.close()
+				console.log(chalk.yellowBright('Bye 👋'))
 				return
 			}
 
@@ -91,7 +92,11 @@ const colorizedOutput = (x, y) => {
 							message: 'What type of product do you want to show?',
 							choices: [
 								...categories,
-								{ key: 'exit', name: 'Exit', value: 'exit' },
+								{
+									key: 'exit',
+									name: chalk.red('Exit'),
+									value: 'exit',
+								},
 							],
 						},
 					])
@@ -101,6 +106,7 @@ const colorizedOutput = (x, y) => {
 
 				if (category.category === 'exit') {
 					browser.close()
+					console.log(chalk.yellowBright('Bye 👋'))
 					return
 				}
 
@@ -296,6 +302,16 @@ const colorizedOutput = (x, y) => {
 					})
 				}
 			}
+		} else {
+			browser.close()
+			console.log(
+				chalk.red(
+					`No products found ${
+						noResultEmojis[Math.floor(Math.random() * noResultEmojis.length)]
+					}`
+				)
+			)
+			return
 		}
 	} catch (e) {
 		console.error(e)
