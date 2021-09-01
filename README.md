@@ -18,7 +18,6 @@ npm run bengans YOUR-QUERY
 ```
 > ***Example:*** *npm run bengans hellacopters*
 > 
-> You have to spell the artist or product you're looking for correctly, if spaces are needed add a backslash before the space  (***Example:*** Iron\ Maiden)
 
 
 ## Preview 
