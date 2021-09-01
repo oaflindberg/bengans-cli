@@ -1,3 +1,4 @@
+
 # bengans-cli
 
 ## Search for products available at Bengans record store like a pro
@@ -24,4 +25,4 @@ bengans-cli YOUR-QUERY
 
 
 ## Preview 
-![bengans-cli](https://user-images.githubusercontent.com/45793849/131515943-d7e44a51-760f-43d2-8d42-49f3db9026ec.gif)
+![Kapture 2021-09-01 at 22 36 35](https://user-images.githubusercontent.com/45793849/131741555-5224b432-5485-44c1-8bd9-ea014b32bd46.gif)
