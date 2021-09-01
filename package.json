@@ -1,41 +1,41 @@
 {
-	"name": "bengans-cli",
-	"version": "0.1.0",
-	"description": "Find products available at bengans record store, get name and link to product based on your search query and category choices.",
-	"main": "index.ts",
-	"scripts": {
-		"bengans": "npx ts-node src/app.ts"
-	},
-	"author": "Andreas Lindberg",
-	"license": "MIT",
-	"keywords": [
-		"cli",
-		"puppeteer",
-		"terminal",
-		"shopping",
-		"sweden",
-		"records"
-	],
-	"bin": {
-		"bengans": "./src/app.ts",
-		"bengans-cli": "./src/app.ts"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/oaflindberg/bengans-cli"
-	},
-	"dependencies": {
-		"chalk": "^4.1.2",
-		"inquirer": "^8.1.2",
-		"ora": "^5.2.0",
-		"puppeteer": "^10.2.0",
-		"ts-node": "^10.2.1",
-		"typescript": "^4.4.2"
-	},
-	"devDependencies": {
-		"@types/chalk": "^2.2.0",
-		"@types/inquirer": "^7.3.3",
-		"@types/ora": "^3.2.0",
-		"@types/puppeteer": "^5.4.4"
-	}
+  "name": "bengans-cli",
+  "version": "0.1.0",
+  "description": "Find products available at bengans record store, get name and link to product based on your search query and category choices.",
+  "main": "src/app.ts",
+  "scripts": {
+    "bengans": "npx ts-node src/app.ts"
+  },
+  "author": "Andreas Lindberg",
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "puppeteer",
+    "terminal",
+    "shopping",
+    "sweden",
+    "records"
+  ],
+  "bin": {
+    "bengans": "./src/app.ts",
+    "bengans-cli": "./src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oaflindberg/bengans-cli"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "inquirer": "^8.1.2",
+    "ora": "^5.2.0",
+    "puppeteer": "^10.2.0",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/inquirer": "^7.3.3",
+    "@types/ora": "^3.2.0",
+    "@types/puppeteer": "^5.4.4"
+  }
 }
