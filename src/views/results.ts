@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { resultFoundEmojis } from '../constants.js';
+import { resultFoundEmojis } from '../utils/constants';
 
 export const showResults = async () => {
 	console.log(

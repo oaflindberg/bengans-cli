@@ -34,7 +34,7 @@ export const specificProduct = async () => {
 	return specificCategory;
 };
 
-export const whatCategory = async (categories) => {
+export const whatCategory = async (categories: string[]) => {
 	const category = await inquirer
 		.prompt([
 			{

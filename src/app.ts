@@ -1,10 +1,10 @@
 import puppeteer from 'puppeteer';
 import chalk from 'chalk';
-import { colorizedOutput } from './utils/colorizer.js';
-import { showResults, noResult, exit } from './views/index.js';
-import { init } from './utils/init.js';
-import { recordSelector, linkSelector, categorySelector, spinner } from './constants.js';
-import { specificProduct, whatCategory } from './questions.js';
+import { colorizedOutput } from './utils/colorizer';
+import { showResults, noResult, exit } from './views/index';
+import { init } from './utils/init';
+import { recordSelector, linkSelector, categorySelector, spinner } from './utils/constants';
+import { specificProduct, whatCategory } from './utils/questions';
 
 (async () => {
 	try {
@@ -14,7 +14,7 @@ import { specificProduct, whatCategory } from './questions.js';
 		await init(page);
 
 		let categories = await page.$$eval(categorySelector, (category) =>
-			category.map((cat) => {
+			category.map((cat: any) => {
 				const style = window.getComputedStyle(cat);
 				if (style.display === 'block') {
 					return cat.innerText;
@@ -48,7 +48,7 @@ import { specificProduct, whatCategory } from './questions.js';
 				await page.click(selector);
 
 				const titles = await page.$$eval(recordSelector, (titles) =>
-					titles.map((title) => {
+					titles.map((title: any) => {
 						const style = window.getComputedStyle(title.parentElement.parentElement.parentElement);
 						if (style.display !== 'none') {
 							return title.innerText;
@@ -56,7 +56,7 @@ import { specificProduct, whatCategory } from './questions.js';
 					})
 				);
 				const links = await page.$$eval(linkSelector, (links) =>
-					links.map((link) => {
+					links.map((link: any) => {
 						const style = window.getComputedStyle(link.parentElement.parentElement);
 						if (style.display !== 'none') {
 							return link.href;
@@ -77,13 +77,13 @@ import { specificProduct, whatCategory } from './questions.js';
 					});
 				}
 			} else {
-				const titles = await page.$$eval(recordSelector, (recs) => recs.map((rec) => rec.innerText));
-				const links = await page.$$eval(linkSelector, (recs) => recs.map((rec) => rec.href));
+				const titles = await page.$$eval(recordSelector, (recs) => recs.map((rec: any) => rec.innerText));
+				const links = await page.$$eval(linkSelector, (recs) => recs.map((rec: any) => rec.href));
 
 				await browser.close();
 
 				if (titles.length <= 0) {
-					await noResult();
+					await noResult(browser);
 				} else {
 					await showResults();
 					titles.map((title, index) => {
