@@ -1,5 +1,6 @@
 import { exit } from './exit';
 import { noResult } from './noResult';
-import { showResults } from './results';
+import { showResults } from './showResults';
+import { error } from './error';
 
-export { exit, noResult, showResults };
+export { exit, error, noResult, showResults };

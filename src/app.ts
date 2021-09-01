@@ -1,10 +1,7 @@
 import puppeteer from 'puppeteer';
-import chalk from 'chalk';
-import { colorizedOutput } from './utils/colorizer';
-import { showResults, noResult, exit } from './views/index';
-import { init } from './utils/init';
-import { recordSelector, linkSelector, categorySelector, spinner } from './utils/constants';
-import { specificProduct, whatCategory } from './utils/questions';
+import { showResults, noResult, exit, error } from './views/index';
+import { recordSelector, linkSelector, categorySelector, spinner } from './constants';
+import { init, specificProduct, whatCategory } from './utils/index';
 
 (async () => {
 	try {
@@ -23,7 +20,6 @@ import { specificProduct, whatCategory } from './utils/questions';
 		);
 
 		categories = categories.filter((category) => category !== null);
-
 		spinner.succeed();
 
 		if (categories.length > 0) {
@@ -31,7 +27,6 @@ import { specificProduct, whatCategory } from './utils/questions';
 
 			if (specificCategory.category === 'exit') {
 				exit(browser);
-				return;
 			}
 
 			if (specificCategory.category) {
@@ -39,7 +34,6 @@ import { specificProduct, whatCategory } from './utils/questions';
 
 				if (category.category === 'exit') {
 					exit(browser);
-					return;
 				}
 
 				spinner.start(`Fetching ${category.category}'s`);
@@ -69,12 +63,8 @@ import { specificProduct, whatCategory } from './utils/questions';
 
 				if (titles.length <= 0) {
 					await noResult(browser);
-					return;
 				} else {
-					await showResults();
-					titles.map((title, index) => {
-						colorizedOutput(title, links[index]);
-					});
+					await showResults(titles, links);
 				}
 			} else {
 				const titles = await page.$$eval(recordSelector, (recs) => recs.map((rec: any) => rec.innerText));
@@ -85,18 +75,13 @@ import { specificProduct, whatCategory } from './utils/questions';
 				if (titles.length <= 0) {
 					await noResult(browser);
 				} else {
-					await showResults();
-					titles.map((title, index) => {
-						colorizedOutput(title, links[index]);
-					});
+					await showResults(titles, links);
 				}
 			}
 		} else {
 			await noResult(browser);
-			return;
 		}
 	} catch (e) {
-		spinner.stop();
-		console.log(chalk.red('Something went wrong. Sorry! 🤷‍'));
+		error();
 	}
 })();
