@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 
 export const specificProduct = async () => {
-  const specificCategory = await inquirer
+  const specificProduct = await inquirer
     .prompt([
       {
         type: 'list',
@@ -27,11 +27,11 @@ export const specificProduct = async () => {
         ],
       },
     ])
-    .then((r) => {
-      return r;
+    .then((answer) => {
+      return answer;
     });
 
-  return specificCategory;
+  return specificProduct.category;
 };
 
 export const whatCategory = async (categories: string[]) => {
@@ -51,8 +51,8 @@ export const whatCategory = async (categories: string[]) => {
         ],
       },
     ])
-    .then((a) => {
-      return a;
+    .then((answer) => {
+      return answer;
     });
 
   return category.category;

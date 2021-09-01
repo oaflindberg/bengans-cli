@@ -6,6 +6,7 @@ import { getLinks } from './getLinks';
 import { getTitles } from './getTitles';
 import { getCategories } from './getCategories';
 import { queryBuilder } from './queryBuilder';
+import { spinner } from './spinner';
 
 export {
   queryBuilder,
@@ -17,4 +18,5 @@ export {
   init,
   specificProduct,
   whatCategory,
+  spinner,
 };

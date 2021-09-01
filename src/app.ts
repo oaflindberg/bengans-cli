@@ -1,11 +1,21 @@
 import puppeteer from 'puppeteer';
+import chalk from 'chalk';
 import { showResults, noResult, exit, error } from './views/index';
-import { linkSelector, recordSelector, spinner } from './constants';
-import { getCategories, getLinks, getTitles, init, selectCategory, specificProduct, whatCategory } from './utils/index';
+import { linkSelector, recordSelector } from './constants';
+import {
+  getCategories,
+  getLinks,
+  getTitles,
+  init,
+  selectCategory,
+  specificProduct,
+  spinner,
+  whatCategory,
+} from './utils/index';
 
 (async () => {
   try {
-    spinner.start();
+    spinner.start(chalk.blueBright('Fetching products...'));
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await init(page);
@@ -15,20 +25,20 @@ import { getCategories, getLinks, getTitles, init, selectCategory, specificProdu
     spinner.succeed();
 
     if (categories.length > 0) {
-      const specificCategory = await specificProduct();
+      const showSpecificProduct = await specificProduct();
 
-      if (specificCategory.category === 'exit') {
+      if (showSpecificProduct === 'exit') {
         exit(browser);
       }
 
-      if (specificCategory.category) {
+      if (showSpecificProduct) {
         let category = await whatCategory(categories);
 
         if (category === 'exit') {
           exit(browser);
         }
 
-        spinner.start(`Fetching ${category}'s`);
+        spinner.start(chalk.blueBright(`Fetching ${category}'s`));
 
         await selectCategory(category, page);
 
