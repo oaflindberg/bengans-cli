@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import puppeteer from 'puppeteer';
 import chalk from 'chalk';
 import { showResults, noResult, exit, error } from './views/index';
