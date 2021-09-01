@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2015",
+		"strict": true,
+		"noEmit": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"noUnusedLocals": false,
+		"moduleResolution": "node",
+		"allowJs": true
+	},
+	"exclude": ["src/node_modules", "src", ".cache"]
+}
