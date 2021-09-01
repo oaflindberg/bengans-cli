@@ -5,7 +5,6 @@ Ever wanted to search for products at [bengans.se](https://bengans.se) in the co
 
 ## Installation & Usage
 
-Make sure you're running **Node 14.0** or later version before using this, if you're not, it won't work.
 #### Installation
 
 ``` 
