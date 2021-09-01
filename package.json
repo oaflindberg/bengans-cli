@@ -4,7 +4,8 @@
   "description": "Find products available at bengans record store, get name and link to product based on your search query and category choices.",
   "main": "src/app.ts",
   "scripts": {
-    "bengans": "npx ts-node src/app.ts"
+    "bengans": "npx ts-node src/app.ts",
+    "build": "tsc && chmod +x dist/app.js"
   },
   "author": "Andreas Lindberg",
   "license": "MIT",
@@ -17,8 +18,8 @@
     "records"
   ],
   "bin": {
-    "bengans": "./src/app.ts",
-    "bengans-cli": "./src/app.ts"
+    "bengans": "./dist/app.js",
+    "bengans-cli": "./dist/app.js"
   },
   "repository": {
     "type": "git",
