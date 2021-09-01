@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import { showResults, noResult, exit, error } from './views/index';
-import { recordSelector, linkSelector, spinner } from './constants';
+import { linkSelector, recordSelector, spinner } from './constants';
 import { getCategories, getLinks, getTitles, init, selectCategory, specificProduct, whatCategory } from './utils/index';
 
 (async () => {
@@ -32,8 +32,8 @@ import { getCategories, getLinks, getTitles, init, selectCategory, specificProdu
 
         await selectCategory(category, page);
 
-        const titles: string[] = await getTitles(page);
-        const links: string[] = await getLinks(page);
+        const titles = await getTitles(page);
+        const links = await getLinks(page);
 
         await browser.close();
         spinner.succeed();
@@ -50,10 +50,10 @@ import { getCategories, getLinks, getTitles, init, selectCategory, specificProdu
         await browser.close();
 
         if (titles.length > 0) {
-          await noResult(browser);
+          await showResults(titles, links);
         }
 
-        await showResults(titles, links);
+        await noResult(browser);
       }
     } else {
       await noResult(browser);

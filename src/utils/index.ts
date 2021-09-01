@@ -5,5 +5,16 @@ import { specificProduct, whatCategory } from './questions';
 import { getLinks } from './getLinks';
 import { getTitles } from './getTitles';
 import { getCategories } from './getCategories';
+import { queryBuilder } from './queryBuilder';
 
-export { selectCategory, getLinks, getCategories, getTitles, colorizedOutput, init, specificProduct, whatCategory };
+export {
+  queryBuilder,
+  selectCategory,
+  getLinks,
+  getCategories,
+  getTitles,
+  colorizedOutput,
+  init,
+  specificProduct,
+  whatCategory,
+};
