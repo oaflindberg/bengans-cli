@@ -8,15 +8,18 @@ Ever wanted to search for products at [bengans.se](https://bengans.se) in the co
 #### Installation
 
 ``` 
-git clone https://github.com/oaflindberg/bengans-cli.git
-cd bengans-cli 
+npm install -g bengans-cli
+```
+or 
+```
+yarn add --global bengans-cli
 ```
 
 #### Usage
 ``` 
-npm run bengans YOUR-QUERY 
+bengans-cli YOUR-QUERY 
 ```
-> ***Example:*** *npm run bengans hellacopters*
+> ***Example:*** *bengans-cli iron maiden*
 > 
 
 
