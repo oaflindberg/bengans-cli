@@ -2,58 +2,58 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 
 export const specificProduct = async () => {
-	const specificCategory = await inquirer
-		.prompt([
-			{
-				type: 'list',
-				name: 'category',
-				message: chalk.yellowBright('Do you want to only show a specific product type?'),
-				choices: [
-					{
-						key: 'yes',
-						name: chalk.green('Yes'),
-						value: true,
-					},
-					{
-						key: 'no',
-						name: chalk.red('No'),
-						value: false,
-					},
-					{
-						key: 'exit',
-						name: 'Exit',
-						value: 'exit',
-					},
-				],
-			},
-		])
-		.then((r) => {
-			return r;
-		});
+  const specificCategory = await inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'category',
+        message: chalk.yellowBright('Do you want to only show a specific product type?'),
+        choices: [
+          {
+            key: 'yes',
+            name: chalk.green('Yes'),
+            value: true,
+          },
+          {
+            key: 'no',
+            name: chalk.red('No'),
+            value: false,
+          },
+          {
+            key: 'exit',
+            name: 'Exit',
+            value: 'exit',
+          },
+        ],
+      },
+    ])
+    .then((r) => {
+      return r;
+    });
 
-	return specificCategory;
+  return specificCategory;
 };
 
 export const whatCategory = async (categories: string[]) => {
-	const category = await inquirer
-		.prompt([
-			{
-				type: 'list',
-				name: 'category',
-				message: 'What type of product do you want to show?',
-				choices: [
-					...categories,
-					{
-						key: 'exit',
-						name: chalk.red('Exit'),
-						value: 'exit',
-					},
-				],
-			},
-		])
-		.then((a) => {
-			return a;
-		});
+  const category = await inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'category',
+        message: 'What type of product do you want to show?',
+        choices: [
+          ...categories,
+          {
+            key: 'exit',
+            name: chalk.red('Exit'),
+            value: 'exit',
+          },
+        ],
+      },
+    ])
+    .then((a) => {
+      return a;
+    });
 
-	return category;
+  return category.category;
 };
