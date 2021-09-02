@@ -9,11 +9,11 @@ Ever wanted to search for products at [bengans.se](https://bengans.se) in the co
 #### Installation
 
 ``` 
-npm install -g bengans-cli
+npm install --global bengans-cli
 ```
 or 
 ```
-yarn add --global bengans-cli
+yarn global add bengans-cli
 ```
 
 #### Usage
