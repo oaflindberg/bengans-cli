@@ -1,6 +1,6 @@
 {
   "name": "bengans-cli",
-  "version": "0.1.31",
+  "version": "0.1.4",
   "description": "Find products available at bengans record store, get name and link to product based on your search query and category choices.",
   "main": "src/app.ts",
   "scripts": {
