@@ -9,6 +9,7 @@ import {
   getLinks,
   getTitles,
   init,
+  queryBuilder,
   selectCategory,
   specificProduct,
   spinner,
@@ -20,7 +21,9 @@ import {
     spinner.start(chalk.blueBright('Fetching products...'));
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await init(page);
+    let query = await queryBuilder();
+
+    await init(page, query);
 
     let categories = await getCategories(page);
 
@@ -51,7 +54,7 @@ import {
         spinner.succeed();
 
         if (titles.length > 0) {
-          await showResults(titles, links);
+          await showResults(titles, links, query);
         }
 
         await noResult(browser);
@@ -62,7 +65,7 @@ import {
         await browser.close();
 
         if (titles.length > 0) {
-          await showResults(titles, links);
+          await showResults(titles, links, query);
         }
 
         await noResult(browser);
