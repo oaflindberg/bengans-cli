@@ -12,6 +12,7 @@ export const showResults = async (titles: string[], links: string[], query: stri
     if (query.split(' ')[0].toLowerCase() == 'the') {
       query = query.split(' ').slice(1).join(' ');
     }
+    // TODO: This works when running locally, but does not work after installing globally. Needs to be fixed.
     if (artist[0].toLowerCase().includes(query.toLowerCase())) {
       colorizedOutput(title, links[index]);
     }

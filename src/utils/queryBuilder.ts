@@ -1,3 +1,4 @@
+// TODO: This needs to be done in a better way
 export const queryBuilder = async () => {
   let query = process.argv[2];
 
